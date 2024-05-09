@@ -25,7 +25,9 @@ Source code was written in bash and python, and only supported on linux platform
 
 ## 3-1. STEP01: Mapping
 
- - Only paired-end reading is available, and the file name rules are as follows: [sample name]__[T or N ("T" for a tumor sample, "N" for a normal sample)]__[R1 or R2 (“R1” for a forward file, “R2” for a reverse file)].fastq.gz 
+ - Only paired-end reading is available, and the file name rules are as follows: [sample name]__[T or N ("T" for a tumor sample, "N" for a normal sample)]__[R1 or R2 (“R1” for a forward file, “R2” for a reverse file)].fastq.gz
+
+ - The important thing is that before executing the script, you must open the script (e.g. vi or nano) and type each software path and environment variable appropriately.
 
  - The usage of the step01 script is as follows:
 
@@ -43,19 +45,28 @@ Source code was written in bash and python, and only supported on linux platform
 
 ## 3-2. STEP02: Somatic calling
 
-Usage : sh step02_Reference_Indexing.sh  [Reference Fasta file]
+ - BAM files for Normal and Tumor of each sample are required. The file name rules are as follows: [sample name]__[T or N ("T" for a tumor sample, "N" for a normal sample)].otehr.strings.bam
 
-![s2](https://user-images.githubusercontent.com/49300659/67938042-11d08580-fc12-11e9-83c0-3fed0265f698.png)
+ - The important thing is that before executing the script, you must open the script (e.g. vi or nano) and type each software path and environment variable appropriately.
 
+ - The usage of the step01 script is as follows:
 
-    Example: sh step02_Reference_Indexing.sh \
+    Usage : sh step02.BAM_to_Somatic_calling.sh   [ Sample_N.mapping.bam(=Normal bam)]     [ Sample_T.mapping.bam(=Tumor bam)]
+
+![use2](https://github.com/JaeYoonKim72/CRC_Korean/assets/49300659/45bf62ef-d787-433b-ac53-c6269fe4da30)
+
+    Example: sh step02.BAM_to_Somatic_calling.sh \
     
-                         Reference/hg38_example.fa.gz                    # Reference fasta file compressed by gzip
+                         TEST1_N.markdup.BQSR.bam  \  # Normal bam
+                          
+                         TEST1_T.markdup.BQSR.bam  \  # Tumor bam
         
         
 ## 3-3. STEP03: Filtering
 
-Usage : sh step03_Variant_Calling.sh  [Sample_directory]  [Sample_suffix: fastq.gz or fq.gz]  [# of Jobs]  [Threads]
+ - The usage of the step01 script is as follows:
+   
+    Usage : sh step03_Variant_Calling.sh  [Sample_directory]  [Sample_suffix: fastq.gz or fq.gz]  [# of Jobs]  [Threads]
 
 ![s3_re](https://user-images.githubusercontent.com/49300659/67938735-6cb6ac80-fc13-11e9-9670-42202f3b98c3.png)
 
