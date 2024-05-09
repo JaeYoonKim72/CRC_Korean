@@ -1,4 +1,5 @@
-# 1. Varinat Calling pipeline using GATK
+# Whole genome data of normal-blood pairs of 99 Korean colorectal cancer individuals 
+
 
 Variant Calling pipeline was based on GATK software developed by Van der Auwera, and constructed by Jae-Yoon Kim.
 
@@ -7,18 +8,24 @@ This pipeline uses FastQ files of samples and finally presents VCF files for SNP
 Source code was written in bash, sh-compatible command language, and supported only on linux platform.
 
 
-# 2. Flow-chart of pipeline
+# 1. Abstract
+
+Colorectal cancer (CRC) is the third most common cancer type worldwide. While screening has led to a decrease in its incidence globally, early-onset CRC (EOCRC) in patients under 50 years of age has been on the rise. Korean has been reported to have the highest incidence of EOCRC worldwide; however, research on the EOCRC has not been studied in more depth than late on-set CRC (LOCRC), and the related data has been little available in public database. From this perspec-tive, we provide a comprehensive dataset of Korean EOCRC and LOCRC with clinical information. We generated whole-genome data of 49 EOCRC and 50 LOCRC Korea patients from a pair of tis-sue and blood. Sequence platform was DNBSeq T7, and read length was 150 bp. The total number of reads was 1,049 million reads, and at least 5.3 million reads were produced per sample. Our dataset presents a valuable resource to researchers studying EOCRC, and is expected to be contribute to the diagnosis and therapy studies of CRC. 
+
+
+# 2. Abstract
 
 The flow-chart is as follows:
 
-![그림2](https://user-images.githubusercontent.com/49300659/81303841-36bd1e00-90b7-11ea-9295-638664dc2d5a.jpg)
+[Type START]![work_flow1](https://github.com/JaeYoonKim72/CRC_Korean/assets/49300659/6eed189b-bb5d-42eb-9046-df1131ac6afe)
 
 
 # 3. Usage
 
-## 3-1. Preparation
+## 3-1. Mapping
 
-Usage : sh step01_Preparation.sh  [Type START]
+Usage : sh step01.Mapping_to_BQSR.sh  [ Sample_T_R1.fastq.gz(=Forward read) ]    [ Sample_T_R2.fastq.gz(=Reverse read)]
+
 
 ![s1](https://user-images.githubusercontent.com/49300659/67937919-cd44ea00-fc11-11e9-8f6f-f176d54c2f16.png)
 
@@ -28,7 +35,7 @@ Usage : sh step01_Preparation.sh  [Type START]
                          START                                           # START of this step
 
 
-## 3-2. Indexing Reference Genome
+## 3-2. Somatic calling
 
 Usage : sh step02_Reference_Indexing.sh  [Reference Fasta file]
 
@@ -40,7 +47,7 @@ Usage : sh step02_Reference_Indexing.sh  [Reference Fasta file]
                          Reference/hg38_example.fa.gz                    # Reference fasta file compressed by gzip
         
         
-## 3-3. Variant Calling
+## 3-3. Filtering
 
 Usage : sh step03_Variant_Calling.sh  [Sample_directory]  [Sample_suffix: fastq.gz or fq.gz]  [# of Jobs]  [Threads]
 
