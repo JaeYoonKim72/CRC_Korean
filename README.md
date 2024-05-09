@@ -49,7 +49,7 @@ Source code was written in bash and python, and only supported on linux platform
 
  - The important thing is that before executing the script, you must open the script (e.g. vi or nano) and type each software path and environment variable appropriately.
 
- - The usage of the step01 script is as follows:
+ - The usage of the step02 script is as follows:
 
     Usage : sh step02.BAM_to_Somatic_calling.sh   [ Sample_N.mapping.bam(=Normal bam)]     [ Sample_T.mapping.bam(=Tumor bam)]
 
@@ -64,7 +64,7 @@ Source code was written in bash and python, and only supported on linux platform
         
 ### 3-3. STEP03: Filtering
 
- - The usage of the step01 script is as follows:
+ - The usage of the step03 script is as follows:
    
     Usage : sh step03_Variant_Calling.sh  [Sample_directory]  [Sample_suffix: fastq.gz or fq.gz]  [# of Jobs]  [Threads]
 
