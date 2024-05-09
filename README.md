@@ -1,6 +1,5 @@
 # Whole genome data of normal-blood pairs of 99 Korean colorectal cancer individuals 
 
-
 Variant Calling pipeline was based on GATK software developed by Van der Auwera, and constructed by Jae-Yoon Kim.
 
 This pipeline uses FastQ files of samples and finally presents VCF files for SNP and INDEL.
@@ -10,29 +9,34 @@ Source code was written in bash, sh-compatible command language, and supported o
 
 # 1. Abstract
 
-Colorectal cancer (CRC) is the third most common cancer type worldwide. While screening has led to a decrease in its incidence globally, early-onset CRC (EOCRC) in patients under 50 years of age has been on the rise. Korean has been reported to have the highest incidence of EOCRC worldwide; however, research on the EOCRC has not been studied in more depth than late on-set CRC (LOCRC), and the related data has been little available in public database. From this perspec-tive, we provide a comprehensive dataset of Korean EOCRC and LOCRC with clinical information. We generated whole-genome data of 49 EOCRC and 50 LOCRC Korea patients from a pair of tis-sue and blood. Sequence platform was DNBSeq T7, and read length was 150 bp. The total number of reads was 1,049 million reads, and at least 5.3 million reads were produced per sample. Our dataset presents a valuable resource to researchers studying EOCRC, and is expected to be contribute to the diagnosis and therapy studies of CRC. 
+    Colorectal cancer (CRC) is the third most common cancer type worldwide. While screening has led to a decrease in its incidence globally, early-onset CRC (EOCRC) in patients under 50 years of age has been on the rise. Korean has been reported to have the highest incidence of EOCRC worldwide; however, research on the EOCRC has not been studied in more depth than late on-set CRC (LOCRC), and the related data has been little available in public database. From this perspec-tive, we provide a comprehensive dataset of Korean EOCRC and LOCRC with clinical information. We generated whole-genome data of 49 EOCRC and 50 LOCRC Korea patients from a pair of tis-sue and blood. Sequence platform was DNBSeq T7, and read length was 150 bp. The total number of reads was 1,049 million reads, and at least 5.3 million reads were produced per sample. Our dataset presents a valuable resource to researchers studying EOCRC, and is expected to be contribute to the diagnosis and therapy studies of CRC. 
 
 
-# 2. Abstract
+# 2. Work-flow
 
-The flow-chart is as follows:
+The work-flow of somatics calling procees is as follows:
 
 [Type START]![work_flow1](https://github.com/JaeYoonKim72/CRC_Korean/assets/49300659/6eed189b-bb5d-42eb-9046-df1131ac6afe)
 
 
 # 3. Usage
 
-## 3-1. Mapping
+## 3-1. STEP01: Mapping
+
+Only paired-end reading is available, and the file name rules are as follows: [sample name]_[T or N ("T" for a tumor sample, "N" for a normal sample)]_[R1 or R2 (“R1” for forward files, “R2” for reverse files)].fastq.gz 
+
+The usage of the step01 script is as follows:
 
 Usage : sh step01.Mapping_to_BQSR.sh  [ Sample_T_R1.fastq.gz(=Forward read) ]    [ Sample_T_R2.fastq.gz(=Reverse read)]
 
 
-![s1](https://user-images.githubusercontent.com/49300659/67937919-cd44ea00-fc11-11e9-8f6f-f176d54c2f16.png)
+![use1](https://github.com/JaeYoonKim72/CRC_Korean/assets/49300659/29469768-4bcb-4099-9094-b2cc343446b8)
 
-
-    Example: sh step01_Preparation.sh \
+    Example: sh step01.Mapping_to_BQSR.sh \
     
-                         START                                           # START of this step
+                         TEST1_N_R1.fastq.gz   \       # Forward reads
+
+                         TEST2_N_R2.fastq.gz           # Reverse reads
 
 
 ## 3-2. Somatic calling
