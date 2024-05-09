@@ -1,4 +1,4 @@
-# Whole genome data of normal-blood pairs of 99 Korean colorectal cancer individuals 
+## Whole genome data of normal-blood pairs of 99 Korean colorectal cancer individuals 
 
 This somatic calling process for whole genome data of cancer patients was constructed by Jae-Yoon Kim (jaeyoonkim@kribb.re.kr), and it is based on GATK4, BWA-mem2, and samtools softwares.
 
@@ -9,19 +9,19 @@ Specifically, this pipeline uses a total of three somatic callers (Strelka2, Mut
 Source code was written in bash and python, and only supported on linux platform.
 
 
-# 1. Abstract
+## 1. Abstract
 
 - Colorectal cancer (CRC) is the third most common cancer type worldwide. While screening has led to a decrease in its incidence globally, early-onset CRC (EOCRC) in patients under 50 years of age has been on the rise. Korean has been reported to have the highest incidence of EOCRC worldwide; however, research on the EOCRC has not been studied in more depth than late on-set CRC (LOCRC), and the related data has been little available in public database. From this perspec-tive, we provide a comprehensive dataset of Korean EOCRC and LOCRC with clinical information. We generated whole-genome data of 49 EOCRC and 50 LOCRC Korea patients from a pair of tis-sue and blood. Sequence platform was DNBSeq T7, and read length was 150 bp. The total number of reads was 1,049 million reads, and at least 5.3 million reads were produced per sample. Our dataset presents a valuable resource to researchers studying EOCRC, and is expected to be contribute to the diagnosis and therapy studies of CRC. 
 
 
-# 2. Work-flow
+## 2. Work-flow
 
  - The work-flow of somatics calling procees is as follows:
 
 ![work_flow1](https://github.com/JaeYoonKim72/CRC_Korean/assets/49300659/6eed189b-bb5d-42eb-9046-df1131ac6afe)
 
 
-# 3. Usage
+## 3. Usage
 
 ## 3-1. STEP01: Mapping
 
@@ -41,7 +41,7 @@ Source code was written in bash and python, and only supported on linux platform
                          TEST2_N_R2.fastq.gz           # Reverse reads
 
 
-## 3-2. Somatic calling
+## 3-2. STEP02: Somatic calling
 
 Usage : sh step02_Reference_Indexing.sh  [Reference Fasta file]
 
@@ -53,7 +53,7 @@ Usage : sh step02_Reference_Indexing.sh  [Reference Fasta file]
                          Reference/hg38_example.fa.gz                    # Reference fasta file compressed by gzip
         
         
-## 3-3. Filtering
+## 3-3. STEP03: Filtering
 
 Usage : sh step03_Variant_Calling.sh  [Sample_directory]  [Sample_suffix: fastq.gz or fq.gz]  [# of Jobs]  [Threads]
 
@@ -72,47 +72,21 @@ Usage : sh step03_Variant_Calling.sh  [Sample_directory]  [Sample_suffix: fastq.
                          
                          15g                                             # Memory size to use
                          
-                         
-## 3-4. Combine samples and Filtering
 
-Usage : sh step04_Combine_gVCFs_and_Filtering.sh  [gVCF directory]  [Threads]  [Output name]
-
-![s4](https://user-images.githubusercontent.com/49300659/67938513-fade6300-fc12-11e9-8fca-5caf24a7ceba.png)
-                        
-
-    Example: sh step04_Combine_gVCFs_and_Filtering.sh \
-    
-                         Results/ \                                      # Directory of gVCF samples
-                         
-                         5 \                                             # Number of threads to use
-                         
-                         sample123                                       # Name of output file
-                         
-                         
-# 4. Results
-
-Result files for each calculation step are stored in the "Results" directory, and finally vcf files for INDELs, SNPs, and bi-allelic SNPs are presented.
-
-
-# 5. Requirement
-
-The required programs are BWA, SAMTOOLS, VCFTOOLS, BGZIP, and GATK, and all the programs are provided in the "src" directory.
-
-
-# 6. Contact
+## 4. Contact
 
 jaeyoonkim@kribb.re.kr
 
 
-# 7. Citation
+## 5. Citation
 
 - Paper is under review.
 
 
-# 8. Reference
+## 6. Reference
 
-Van der Auwera, G. A., & O'Connor, B. D. (2020). Genomics in the cloud: using Docker, GATK, and WDL in Terra. O'Reilly Media.
+ - GATK4: Van der Auwera, G. A., & O'Connor, B. D. (2020). Genomics in the cloud: using Docker, GATK, and WDL in Terra. O'Reilly Media.
 
-Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., ... & Durbin, R. (2009). The sequence alignment/map format and SAMtools. Bioinformatics, 25(16), 2078-2079.
-
-Vasimuddin, M., Misra, S., Li, H., & Aluru, S. (2019, May). Efficient architecture-aware acceleration of BWA-MEM for multicore systems. In 2019 IEEE international parallel and distributed processing symposium (IPDPS) (pp. 314-324). IEEE.
+ - SAMTOOLS: Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., ... & Durbin, R. (2009). The sequence alignment/map format and SAMtools. Bioinformatics, 25(16), 2078-2079.
+ 
+ - BWA-MEM2: Vasimuddin, M., Misra, S., Li, H., & Aluru, S. (2019, May). Efficient architecture-aware acceleration of BWA-MEM for multicore systems. In 2019 IEEE international parallel and distributed processing symposium (IPDPS) (pp. 314-324). IEEE.
