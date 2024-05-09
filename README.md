@@ -1,4 +1,4 @@
-## Whole genome data of normal-blood pairs of 99 Korean colorectal cancer individuals 
+# Whole genome data of normal-blood pairs of 99 Korean colorectal cancer individuals 
 
 This somatic calling process for whole genome data of cancer patients was constructed by Jae-Yoon Kim (jaeyoonkim@kribb.re.kr), and it is based on GATK4, BWA-mem2, and samtools softwares.
 
@@ -23,7 +23,7 @@ Source code was written in bash and python, and only supported on linux platform
 
 ## 3. Usage
 
-## 3-1. STEP01: Mapping
+### 3-1. STEP01: Mapping
 
  - Only paired-end reading is available, and the file name rules are as follows: [sample name]__[T or N ("T" for a tumor sample, "N" for a normal sample)]__[R1 or R2 (“R1” for a forward file, “R2” for a reverse file)].fastq.gz
 
@@ -43,7 +43,7 @@ Source code was written in bash and python, and only supported on linux platform
                          TEST2_N_R2.fastq.gz           # Reverse reads
 
 
-## 3-2. STEP02: Somatic calling
+### 3-2. STEP02: Somatic calling
 
  - BAM files for Normal and Tumor of each sample are required. The file name rules are as follows: [sample name]__[T or N ("T" for a tumor sample, "N" for a normal sample)].otehr.strings.bam
 
@@ -62,7 +62,7 @@ Source code was written in bash and python, and only supported on linux platform
                          TEST1_T.markdup.BQSR.bam  \  # Tumor bam
         
         
-## 3-3. STEP03: Filtering
+### 3-3. STEP03: Filtering
 
  - The usage of the step01 script is as follows:
    
