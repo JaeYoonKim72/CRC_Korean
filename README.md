@@ -1,10 +1,12 @@
 # Whole genome data of normal-blood pairs of 99 Korean colorectal cancer individuals 
 
-Variant Calling pipeline was based on GATK software developed by Van der Auwera, and constructed by Jae-Yoon Kim.
+This somatic calling process for whole genome data of cancer patients was constructed by Jae-Yoon Kim (jaeyoonkim@kribb.re.kr), and it is based on GATK4, BWA-mem2, and samtools softwares.
 
-This pipeline uses FastQ files of samples and finally presents VCF files for SNP and INDEL.
+This pipeline starts with paired-end fastq files and does not cover quality check and control steps (e.g. fastqc or cutadapter).
 
-Source code was written in bash, sh-compatible command language, and supported only on linux platform.
+Specifically, this pipeline uses a total of three somatic callers (Strelka2, Mutect2, and Varscan2), and ultimately provides somatic mutations with minimal false-positives.
+
+Source code was written in bash and python, and only supported on linux platform.
 
 
 # 1. Abstract
@@ -23,7 +25,7 @@ Source code was written in bash, sh-compatible command language, and supported o
 
 ## 3-1. STEP01: Mapping
 
- - Only paired-end reading is available, and the file name rules are as follows: [sample name]_[T or N ("T" for a tumor sample, "N" for a normal sample)]_[R1 or R2 (“R1” for forward files, “R2” for reverse files)].fastq.gz 
+ - Only paired-end reading is available, and the file name rules are as follows: [sample name]__[T or N ("T" for a tumor sample, "N" for a normal sample)]__[R1 or R2 (“R1” for a forward file, “R2” for a reverse file)].fastq.gz 
 
  - The usage of the step01 script is as follows:
 
@@ -99,15 +101,18 @@ The required programs are BWA, SAMTOOLS, VCFTOOLS, BGZIP, and GATK, and all the 
 
 # 6. Contact
 
-jaeyoonkim72@gmail.com
+jaeyoonkim@kribb.re.kr
 
 
-# 7. Reference
+# 7. Citation
 
-Danecek, P., Auton, A., Abecasis, G., Albers, C. A., Banks, E., DePristo, M. A., ... & McVean, G. (2011). The variant call format and VCFtools. Bioinformatics, 27(15), 2156-2158.
+- Paper is under review.
+
+
+# 8. Reference
+
+Van der Auwera, G. A., & O'Connor, B. D. (2020). Genomics in the cloud: using Docker, GATK, and WDL in Terra. O'Reilly Media.
 
 Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., ... & Durbin, R. (2009). The sequence alignment/map format and SAMtools. Bioinformatics, 25(16), 2078-2079.
 
-Li, H., & Durbin, R. (2010). Fast and accurate long-read alignment with Burrows–Wheeler transform. Bioinformatics, 26(5), 589-595.
-
-Van der Auwera, G. A., Carneiro, M. O., Hartl, C., Poplin, R., Del Angel, G., Levy‐Moonshine, A., ... & Banks, E. (2013). From FastQ data to high‐confidence variant calls: the genome analysis toolkit best practices pipeline. Current protocols in bioinformatics, 43(1), 11-10.
+Vasimuddin, M., Misra, S., Li, H., & Aluru, S. (2019, May). Efficient architecture-aware acceleration of BWA-MEM for multicore systems. In 2019 IEEE international parallel and distributed processing symposium (IPDPS) (pp. 314-324). IEEE.
