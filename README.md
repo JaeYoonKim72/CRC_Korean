@@ -18,7 +18,7 @@ Source code was written in bash and python, and only supported on linux platform
 
  - The work-flow of somatics calling procees is as follows:
 
-![work_flow1](https://github.com/JaeYoonKim72/CRC_Korean/assets/49300659/6eed189b-bb5d-42eb-9046-df1131ac6afe)
+![work_flow_new](https://github.com/JaeYoonKim72/CRC_Korean/assets/49300659/bf26dc22-72fc-4408-8d26-a5c01871fdf8)
 
 
 ## 3. Usage
@@ -62,26 +62,26 @@ Source code was written in bash and python, and only supported on linux platform
                          TEST1_T.markdup.BQSR.bam  \  # Tumor bam
         
         
-### 3-3. STEP03: Filtering
+### 3-3. STEP03: Filtering and Merge mutations (detected in 2 more callers)
 
+ - This STEP03 once again applies consistent filtering to the outputs of strelka2, mutect2, and varscan2, and finally presents somatic mutations detected in two or three callers among these three callers.
+
+ - The important thing is that before executing the script, you must open the script (e.g. vi or nano) and type each software path and environment variable appropriately.
+   
  - The usage of the step03 script is as follows:
    
-    Usage : sh step03_Variant_Calling.sh  [Sample_directory]  [Sample_suffix: fastq.gz or fq.gz]  [# of Jobs]  [Threads]
+    Usage : sh step03.Somatic_calling_to_Filter_and_Merge.sh   [ Strelka2.out.vcf ]     [ Mutect2.out.vcf ]     [ Varscan2.out.vcf ]
 
-![s3_re](https://user-images.githubusercontent.com/49300659/67938735-6cb6ac80-fc13-11e9-9670-42202f3b98c3.png)
+![use3](https://github.com/JaeYoonKim72/CRC_Korean/assets/49300659/814df0e1-271a-451b-8e95-61cb719f595c)
 
-                         
-    Example: sh step03_Variant_Calling.sh \
+    Example: sh step03.Somatic_calling_to_Filter_and_Merge.sh \
     
-                         ExampleData/ \                                  # Directory fo samples
+                         Strelka2.out.vcf \                       # output of Strelka2 of STEP02
                          
-                         fastq.gz \                                      # Suffix of Samples
+                         Mutect2.out.vcf \                        # output of Mutect2 of STEP02
                          
-                         3 \                                             # Number of jobs to run
-                         
-                         5 \                                             # Number of threads to use
-                         
-                         15g                                             # Memory size to use
+                         Varscan2.out.vcf                         # output of Varscan2 of STEP02
+
                          
 
 ## 4. Contact
